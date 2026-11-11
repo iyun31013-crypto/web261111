@@ -56,7 +56,6 @@ function renderCards(list) {
         document.getElementById("count").textContent = list.length + "편";
     }
 }
-applySort();
 
 // sortBy : 영화 배열, 키 이름, 내림차순 여부 ⇒ 정렬한 새 배열(원본은 그대로)
 function sortBy(list, key, desc) {
@@ -73,3 +72,5 @@ function applySort() {
  const key = document.getElementById("sort").value;
  renderCards(sortBy(movies, key, key !== "title"));
 }
+
+applySort();
