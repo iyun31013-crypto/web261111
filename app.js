@@ -31,49 +31,6 @@ function filterByRating(list, min) {
 }
 console.log("8점 이상:", filterByRating(movies, 8).length + "편");
 
-<<<<<<< HEAD
-const sortByRating = list => [...list].sort((a, b) => b.rating - a.rating);
-const sorted = sortByRating(movies);
-console.log("정렬 1위:", sorted[0].title, "\n원본 1번:", movies[0].title);
-=======
->>>>>>> 364049c88e3a50e92661046b11f4eda2a2062c53
-
-
-
-// sortBy : 영화 배열, 키 이름, 내림차순 여부 ⇒ 정렬한 새 배열(원본은 그대로)
-function sortBy(list, key, desc) {
- const copy = [...list];
- copy.sort((a, b) => {
- if (typeof a[key] === "string") return a[key].localeCompare(b[key]);
- return a[key] - b[key];
- });
- if (desc) copy.reverse();
- return copy;
-}
-// applySort : 선택 상자 값으로 정렬해서 다시 그리기(반환값 없음)
-function applySort() {
- const key = document.getElementById("sort").value;
- renderCards(sortBy(movies, key, key !== "title"));
-}
-
-
-
-function applySort() {
-    const key = document.querySelector("#sort").value;
-
-    const sorted = [...movies].sort((a, b) => {
-        if (key !== "title") {
-            return b[key] - a[key];
-        } else {
-            return a[key].localeCompare(b[key]);
-        }
-    });
-
-    renderCards(sorted);
-}
-
-
-
 
 // 5
 function yearsSince(dateStr) {
@@ -88,11 +45,7 @@ function posterUrl(path, size) {
 }
 console.log(posterUrl(movies[0].poster, "w342"));
 
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 364049c88e3a50e92661046b11f4eda2a2062c53
 // renderCards : 영화 배열 ⇒ 보드에 카드 생성(반환값 없음)
 function renderCards(list) {
     const board = document.querySelector(".board");
@@ -100,18 +53,13 @@ function renderCards(list) {
     for (const m of list) {
         const card = document.createElement("article");
         card.className = "card";
-<<<<<<< HEAD
-         if (m.rating >= 8) { 
-            card.classList.add("hot"); 
-         }
-=======
-        if (m.rating >= 8) { card.classList.add("hot"); }
->>>>>>> 364049c88e3a50e92661046b11f4eda2a2062c53
+        if (m.rating >= 8) {
+            card.classList.add("hot");
+        }
         card.innerHTML = `
  <img class="poster" src="${posterUrl(m.poster, "w342")}" alt="${m.title} 포스터">
  <span class="badge">${m.rating}</span>
  <div class="info">
-<<<<<<< HEAD
  <h2>${m.title}</h2>
  <p class="year">${m.year}</p>
  </div>`;
@@ -123,30 +71,28 @@ function renderCards(list) {
 
 // sortBy : 영화 배열, 키 이름, 내림차순 여부 ⇒ 정렬한 새 배열(원본은 그대로)
 function sortBy(list, key, desc) {
- const copy = [...list];
- copy.sort((a, b) => {
- if (typeof a[key] === "string") return a[key].localeCompare(b[key]);
- return a[key] - b[key];
- });
- if (desc) copy.reverse();
- return copy;
+    const copy = [...list];
+    copy.sort((a, b) => {
+        if (typeof a[key] === "string") return a[key].localeCompare(b[key]);
+        return a[key] - b[key];
+    });
+    if (desc) copy.reverse();
+    return copy;
 }
+
 // applySort : 선택 상자 값으로 정렬해서 다시 그리기(반환값 없음)
 function applySort() {
- const key = document.getElementById("sort").value;
- renderCards(sortBy(movies, key, key !== "title"));
+    const key = document.querySelector("#sort").value;
+
+    const sorted = [...movies].sort((a, b) => {
+        if (key !== "title") {
+            return b[key] - a[key];
+        } else {
+            return a[key].localeCompare(b[key]);
+        }
+    });
+
+    renderCards(sorted);
 }
 
 applySort();
-=======
-    <h2>${m.title}</h2>
-    <p class="year">${m.year}</p>
- </div>`;
-        board.appendChild(card);
-    }
-
-    document.querySelector("#count").textContent = list.length + "편";
-
-}
-renderCards(movies);
->>>>>>> 364049c88e3a50e92661046b11f4eda2a2062c53
